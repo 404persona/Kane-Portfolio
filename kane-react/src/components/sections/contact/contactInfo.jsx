@@ -12,7 +12,7 @@ const ContactInfo = () => {
                         <i><RiMapPinLine size={20} /></i>
                     </div>
                     <h2>our office:</h2>
-                    <p>Jurain,Dhaka Bangladesh</p>
+                    <p>Arfa IT Park, Model Town, lahore, Pakistan</p>
                 </div>
 
 
@@ -21,7 +21,7 @@ const ContactInfo = () => {
                         <i><RiPhoneLine size={20} /></i>
                     </div>
                     <h2>contact number:</h2>
-                    <p>+1234321321</p>
+                    <p>+92 309 7929132</p>
                 </div>
 
 
@@ -30,7 +30,7 @@ const ContactInfo = () => {
                         <i><RiMailLine size={20} /></i>
                     </div>
                     <h2>Email us:</h2>
-                    <p>websitename@mail.com</p>
+                    <p>hello@anasahmad.tech</p>
                 </div>
 
             </div>

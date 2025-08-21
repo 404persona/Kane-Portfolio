@@ -7,20 +7,20 @@ const servicesList = [
     {
         id: 1,
         icon: <RiGlobalFill size={65} />,
-        service_name: "Brand Identity Design",
-        service_description: "Kane gives you the blocks & kits you need to create a true website within minutes."
+        service_name: "Custom Development",
+        service_description: "Your Digital Architecture, Built with Our Pre-Cast Foundations"
     },
     {
         id: 2,
         icon: <RiQuillPenLine size={65} />,
-        service_name: "Website Design",
-        service_description: "Kane gives you the blocks & kits you need to create a true website within minutes."
+        service_name: "CMS Development",
+        service_description: "Pre-built kits power custom CMS websites across leading platforms."
     },
     {
         id: 3,
         icon: <RiPantoneFill size={65} />,
-        service_name: "Application Design",
-        service_description: "Kane gives you the blocks & kits you need to create a true website within minutes."
+        service_name: "Marketing & Branding",
+        service_description: "Build powerful brands with smart marketing strategies and impactful design.."
     },
 
 ]

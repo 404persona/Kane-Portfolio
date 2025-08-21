@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import logo from "../../assets/images/logo.png"
 import { Link } from 'react-scroll'
+import { Pivot as Hamburger } from 'hamburger-react'
 
 const menuList = [
     {
@@ -37,6 +38,7 @@ const menuList = [
 ]
 const Header = () => {
     const [isSticky, setisSticky] = useState(false)
+    const [isOpen, setIsOpen] = useState(false)
     useEffect(() => {
         window.addEventListener("scroll", stickyHeader)
         return () => window.removeEventListener("scroll", stickyHeader)
@@ -59,7 +61,10 @@ const Header = () => {
                         {/* START LOGO DESIGN AREA */}
                         <div className="logo-outer">
                             <div className="logo">
-                                <a href="#"><img src={logo} alt="Logo" title="Logo" /></a>
+                                <a href="#">
+                                    {/* <img src={logo} alt="Logo" title="Logo" /> */}
+                                    <h2 className='logoText' >ANAS</h2>
+                                </a>
                             </div>
                         </div>
                         {/* END LOGO DESIGN AREA */}
@@ -70,20 +75,23 @@ const Header = () => {
                                 <div className="navbar-header">
                                     <div className="mobile-logo">
                                         <a href="#">
-                                            <img src={logo} alt="Logo" title="Logo" />
+                                            {/* <img src={logo} alt="Logo" title="Logo" /> */}
+                                            <h2 className='logoText' >ANAS</h2>
                                         </a>
                                     </div>
                                     {/* Toggle Button */}
                                     <button type="button" className="navbar-toggle" data-bs-toggle="collapse" data-bs-target=".navbar-collapse">
-                                        <span className="icon-bar"></span>
-                                        <span className="icon-bar"></span>
-                                        <span className="icon-bar"></span>
+                                        <Hamburger toggled={isOpen} toggle={setIsOpen} size={32} rounded />
+
                                     </button>
                                 </div>
                                 <div className="navbar-collapse collapse">
                                     <ul className="navigation onepage clearfix">
                                         {
-                                            menuList.map(({ id, label, path }) => <li key={id}><Link to={path} spy={true} smooth={true} offset={0} duration={500}  className="nav-link-click" >{label}</Link></li>)
+                                            menuList.map(({ id, label, path }) => <li key={id}><Link
+                                                onClick={() => setIsOpen(false)}
+                                                to={path} spy={true} smooth={true} offset={0} duration={500}
+                                                className="nav-link-click" >{label}</Link></li>)
                                         }
                                     </ul>
                                 </div>

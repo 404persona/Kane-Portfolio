@@ -11,9 +11,9 @@ const Banner = () => {
                             {/*  START HERO DESIGN AREA  */}
                             <SlideUp>
                                 <div className="hero-content rmb-25 text-center">
-                                    <h1>I'm <span>Kane</span> Walker</h1>
+                                    <h1>Hey, I'm <span>Anas</span> </h1>
                                     <div className="job">
-                                        <span>UI Designer</span><span>Webflow Developer</span><span>Marketer</span>
+                                        <span>MERN Developer</span> <span>CMS Developer</span><span>Digital Marketer</span>
                                     </div>
                                 </div>
                             </SlideUp>
