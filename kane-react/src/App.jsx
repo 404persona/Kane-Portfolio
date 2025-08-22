@@ -14,7 +14,7 @@ import ProgressBar from './components/ui/progressBar'
 
 const App = () => {
   return (
-    <main>
+    <main className="main">
       <Header />
       <Banner />
       <About />
