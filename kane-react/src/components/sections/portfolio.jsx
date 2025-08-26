@@ -1,89 +1,121 @@
 import React, { useState } from 'react';
-import { RiArrowRightUpLine } from '@remixicon/react'
+import { RiArrowRightUpLine } from '@remixicon/react';
 import Title from '../ui/title';
 import { projectsData } from '../../utlits/fackData/projectsData';
 import Lightbox from '../ui/lightbox';
+import BrowserMockup from '../BrowserMockup';
 
 const animations = ['slideIn', 'fadeIn', 'scaleUp'];
 
 const getRandomAnimation = () => {
-    const randomIndex = Math.floor(Math.random() * animations.length);
-    return animations[randomIndex];
+  const randomIndex = Math.floor(Math.random() * animations.length);
+  return animations[randomIndex];
 };
 
 const Portfolio = () => {
-    const [category, setCategory] = useState('All');
-    const [animationClass, setAnimationClass] = useState('');
-    const [selectedImage, setSelectedImage] = useState(null);
+  const [majorCategory, setMajorCategory] = useState('All');
+  const [animationClass, setAnimationClass] = useState('');
+  const [selectedImage, setSelectedImage] = useState(null);
 
+  const openLightbox = (image) => {
+    setSelectedImage(image);
+  };
 
-    const openLightbox = (image) => {
-        console.log("click")
-        setSelectedImage(image);
-      };
-    
-      const closeLightbox = () => {
-        setSelectedImage(null);
-      };
+  const closeLightbox = () => {
+    setSelectedImage(null);
+  };
 
+  const handleCategoryClick = (item) => {
+    setMajorCategory(item);
+    const randomAnimation = getRandomAnimation();
+    setAnimationClass(randomAnimation);
+  };
 
-    const handleCategoryClick = (item) => {
-        setCategory(item)
-        const randomAnimation = getRandomAnimation();
-        setAnimationClass(randomAnimation);
-
+  // ------ filter unique major categories
+  const filteredCategory = ['All'];
+  projectsData.forEach(({ majorCategory }) => {
+    if (!filteredCategory.includes(majorCategory)) {
+      filteredCategory.push(majorCategory);
     }
+  });
+  // ------ filter unique major categories
 
-    // ------ filter unique category
-    const filteredCategory = ["All"]
-    projectsData.forEach(({ category }) => {
-        if (!filteredCategory.includes(category)) {
-            filteredCategory.push(category)
-        }
-    })
-    // ------ filter unique category
+  const filteredProjects =
+    majorCategory === 'All'
+      ? projectsData
+      : projectsData.filter((project) => project.majorCategory === majorCategory);
 
-    const filteredProjects = category === 'All' ? projectsData : projectsData.filter(image => image.category === category);
+  return (
+    <section id="portfolio" className="projects-area">
+      <div className="container">
+        <div className="row">
+          <div className="col-xl-12 col-lg-12">
+            <Title>
+              <p>Works</p>
+              <h2>Creative Portfolio</h2>
+            </Title>
+          </div>
+        </div>
 
-    return (
-        <section id="portfolio" className="projects-area">
-            <div className="container">
-                <div className="row">
-                    <div className="col-xl-12 col-lg-12">
-                        <Title>
-                            <p>Works</p>
-                            <h2>Creative Portfolio</h2>
-                        </Title>
-                    </div>
-                </div>
-                <ul className="project-filter filter-btns-one justify-content-left pb-15 wow fadeInUp delay-0-2s">
-                    {filteredCategory.map((item, id) => <li key={id} onClick={() => handleCategoryClick(item)} className={item === category ? "current" : ""}>{item}</li>)}
-                </ul>
-                <div className="row project-masonry-active">
-                    {filteredProjects.map(({category, id, src, title})=><Card key={id} category={category} title={title} src={src} animationClass={animationClass} openLightbox={openLightbox}/>)}
-                </div>
-            </div>
-            <Lightbox selectedImage={selectedImage} onClose={closeLightbox} />
-        </section>
-    );
+        {/* ✅ Nav uses majorCategory now */}
+        <ul className="project-filter filter-btns-one justify-content-left pb-15 wow fadeInUp delay-0-2s">
+          {filteredCategory.map((item, id) => (
+            <li
+              key={id}
+              onClick={() => handleCategoryClick(item)}
+              className={item === majorCategory ? 'current' : ''}
+            >
+              {item}
+            </li>
+          ))}
+        </ul>
+
+        <div className="row project-masonry-active">
+          {filteredProjects.map(({ id, src, title, url, category }) => (
+            <Card
+              key={id}
+              category={category} // 👈 still show detailed category
+              title={title}
+              src={src}
+              url={url}
+              animationClass={animationClass}
+              openLightbox={openLightbox}
+            />
+          ))}
+        </div>
+      </div>
+
+      <Lightbox selectedImage={selectedImage} onClose={closeLightbox} />
+    </section>
+  );
 };
 
 export default Portfolio;
 
+// ---- Card Component
+const Card = ({ category, title, src, url, animationClass, openLightbox }) => {
+  return (
+    <div className={`col-lg-4 col-md-6 item branding ${animationClass}`}>
+      <div className="project-item style-two wow fadeInUp delay-0-2s">
+        <div className="project-image">
+          {/* ✅ Wrap image with BrowserMockup */}
+          <BrowserMockup url={url} img={src} />
 
-const Card = ({category, title, src, animationClass, openLightbox}) => {
-    return (
-        <div className={`col-lg-4 col-md-6 item branding ${animationClass}`}>
-            <div className="project-item style-two wow fadeInUp delay-0-2s">
-                <div className="project-image">
-                    <img src={src} alt="Project" />
-                    <div onClick={() => openLightbox(src)} className="details-btn work-popup"><i><RiArrowRightUpLine/></i></div>
-                </div>
-                <div className="project-content">
-                    <span className="sub-title">{category}</span>
-                    <h3>{title}</h3>
-                </div>
-            </div>
+          {/* Button overlay */}
+          <div
+            onClick={() => openLightbox(src)}
+            className="details-btn work-popup"
+          >
+            <i>
+              <RiArrowRightUpLine />
+            </i>
+          </div>
         </div>
-    )
-}
+        <div className="project-content">
+          <span className="sub-title">{category}</span> {/* 👈 still specific */}
+          <h3>{title}</h3>
+        </div>
+      </div>
+    </div>
+  );
+};

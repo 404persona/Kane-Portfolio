@@ -1616,12 +1616,14 @@ ul.extra-skills li i {
 
 .project-item.style-two:hover .project-image:before {
   opacity: 0.65;
-  -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=65)";
+  /* -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=65)"; */
+    border-radius: 20px;
 }
 
 .project-item.style-two:hover .project-image .details-btn {
   opacity: 1;
-  -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=100)";
+  /* -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=100)"; */
+  border-radius: 20px;
 }
 
 .filter-btns-one {
