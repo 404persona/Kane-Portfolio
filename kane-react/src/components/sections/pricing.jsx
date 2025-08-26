@@ -1,5 +1,5 @@
 import React from 'react'
-import { RiArrowRightLine, RiShoppingBasketLine } from '@remixicon/react'
+import { RiArrowRightLine, RiContactsBook2Fill, RiContactsFill, RiPhoneFill, RiShoppingBasketLine } from '@remixicon/react'
 import Title from '../ui/title'
 import ZoomIn from '../animations/zoomIn'
 import { priceData } from '../../utlits/fackData/priceData'
@@ -13,7 +13,7 @@ const Pricing = () => {
                     <div className="col-xl-12 col-lg-12">
                         <Title>
                             <p>Pricing</p>
-                            <h2>Flexible Pricing Plan</h2>
+                            <h2>Choose Your Plan</h2>
                         </Title>
                     </div>
                 </div>
@@ -35,7 +35,7 @@ const Card = ({ info, offers, plan_name, price, id }) => {
                     <div className="pricing-header">
                         <h4 className="title">{plan_name}</h4>
                         <p className="save-percent" dangerouslySetInnerHTML={{ __html: info }} />
-                        <span className="price">{price}</span>
+                        {/* <span className="price">{price}</span> */}
                     </div>
                     <div className="pricing-details">
                         <ul>
@@ -43,7 +43,7 @@ const Card = ({ info, offers, plan_name, price, id }) => {
                                 offers.map(({ id, unable, item }) => <li key={id} className={`${unable ? "unable" : ""}`}><i><RiArrowRightLine size={16} /></i>{item}</li>)
                             }
                         </ul>
-                        <a href="#" className="theme-btn">Order Now <i><RiShoppingBasketLine size={16} /></i></a>
+                        <a href="#" className="theme-btn">Contact Us <i><RiPhoneFill size={16} /></i></a>
                     </div>
                 </div>
             </ZoomIn>
