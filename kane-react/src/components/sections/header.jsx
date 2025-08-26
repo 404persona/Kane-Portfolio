@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import logo from "../../assets/images/logo.png"
 import { Link } from 'react-scroll'
 import { Pivot as Hamburger } from 'hamburger-react'
+import { Link as LogoLink } from 'react-router-dom';
 
 const menuList = [
     {
@@ -59,14 +60,14 @@ const Header = () => {
                 <div className="container">
                     <div className="header-inner d-flex align-items-center">
                         {/* START LOGO DESIGN AREA */}
-                        <div className="logo-outer">
+                        <LogoLink to={"/"} className="logo-outer">
                             <div className="logo">
                                 <a href="#">
                                     {/* <img src={logo} alt="Logo" title="Logo" /> */}
-                                    <h2 className='logoText' >ANAS</h2>
+                                    <h2 className='logoText' >ANAS.</h2>
                                 </a>
                             </div>
-                        </div>
+                        </LogoLink>
                         {/* END LOGO DESIGN AREA */}
                         {/* START NAV DESIGN AREA */}
                         <div className="nav-outer">
@@ -76,7 +77,7 @@ const Header = () => {
                                     <div className="mobile-logo">
                                         <a href="#">
                                             {/* <img src={logo} alt="Logo" title="Logo" /> */}
-                                            <h2 className='logoText' >ANAS</h2>
+                                            <h2 className='logoText' >ANAS.</h2>
                                         </a>
                                     </div>
                                     {/* Toggle Button */}

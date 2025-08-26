@@ -3,6 +3,7 @@ import { RiArrowRightLine, RiContactsBook2Fill, RiContactsFill, RiPhoneFill, RiS
 import Title from '../ui/title'
 import ZoomIn from '../animations/zoomIn'
 import { priceData } from '../../utlits/fackData/priceData'
+import { Link } from 'react-scroll'
 
 
 const Pricing = () => {
@@ -43,7 +44,7 @@ const Card = ({ info, offers, plan_name, price, id }) => {
                                 offers.map(({ id, unable, item }) => <li key={id} className={`${unable ? "unable" : ""}`}><i><RiArrowRightLine size={16} /></i>{item}</li>)
                             }
                         </ul>
-                        <a href="#" className="theme-btn">Contact Us <i><RiPhoneFill size={16} /></i></a>
+                        <Link smooth={true} duration={500} offset={50} to="contact" className="theme-btn">Contact Us <i><RiPhoneFill size={16} /></i></Link>
                     </div>
                 </div>
             </ZoomIn>

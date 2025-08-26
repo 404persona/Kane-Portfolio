@@ -6,9 +6,12 @@ import "bootstrap/dist/js/bootstrap.bundle.min";
 
 import './assets/css/style.css'
 import './assets/css/responsive.css'
+import { BrowserRouter } from 'react-router-dom';
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
-    <App />
+    <BrowserRouter>
+      <App />
+    </BrowserRouter>
   </React.StrictMode>,
 )

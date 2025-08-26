@@ -34,7 +34,7 @@ const About = () => {
                         <div className="about-content-part">
                             <SlideUp>
                                 <h2>
-                                    Hello, I’m Anas Ahmad, <span>Full Stack Developer</span> and Digital Marketer
+                                    Hello, I’m Anas Ahmad, <span>Full Stack MERN Developer</span> and Digital Marketer
                                     Based in Lahore, Pakistan.
                                 </h2>
                                 <div className="hero-btns">

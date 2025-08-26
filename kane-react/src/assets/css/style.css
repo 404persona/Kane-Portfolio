@@ -1617,7 +1617,7 @@ ul.extra-skills li i {
 .project-item.style-two:hover .project-image:before {
   opacity: 0.65;
   /* -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=65)"; */
-    border-radius: 20px;
+  border-radius: 20px;
 }
 
 .project-item.style-two:hover .project-image .details-btn {
@@ -2359,16 +2359,19 @@ ul.extra-skills li i {
 
 .blog-item .image {
   margin-bottom: 10px;
+  border-radius: 10px;
 }
 
 .blog-item .image img {
   width: 100%;
+  border-radius: 15px;
 }
 
 .blog-item .content {
   padding: 30px;
   background: var(--grey-bg);
   border-radius: 0px 0px 10px 10px;
+  border-radius: 15px;
 }
 
 .blog-item .content h5 {
@@ -2901,3 +2904,6 @@ ul.blog_pagination li a:hover {
   cursor: pointer;
 }
 
+.blogs-route {
+  padding-top: 100px;
+}

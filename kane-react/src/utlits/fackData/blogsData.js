@@ -1,28 +1,33 @@
-import blog_1 from "../../assets/images/blog/blog1.jpg"
-import blog_2 from "../../assets/images/blog/blog2.jpg"
-import blog_3 from "../../assets/images/blog/blog3.jpg"
+import Blog1 from "../../blogs/blog1.mdx";
+import Blog2 from "../../blogs/blog2.mdx";
+import Blog3 from "../../blogs/blog3.mdx";
 
-export const blodData = [
-    {
-        id: 1,
-        title: "Spotlight — Equinox Collection by Shane Griffin",
-        date: "January 15, 2024",
-        src: blog_1,
-        descripation: "Looking for inspiration to kick it off, I stumbled across the work of Shane..."
-    },
-    {
-        id: 2,
-        title: "Random Explorations with Cinema 4D and Redshift",
-        date: "February 22, 2024",
-        src: blog_2,
-        descripation: "Nidia Dias is a 3D designer based in the Portugal with an incredible portfolio..."
-    },
-    {
-        id: 3,
-        title: "Random Explorations with Cinema 4D and Redshift",
-        date: "February 25, 2024",
-        src: blog_3,
-        descripation: "Nidia Dias is a 3D designer based in the Portugal with an incredible portfolio..."
-    },
-
-]
+export const blogsData = [
+  {
+    id: 1,
+    title: "Getting Started with SEO",
+    date: "Aug 25, 2025",
+    description: "Learn the basics of SEO and how to optimize your website.",
+    src: "/assets/images/blog1.jpg",
+    slug: "getting-started-with-seo",
+    content: Blog1,
+  },
+  {
+    id: 2,
+    title: "Why React is Awesome",
+    date: "Aug 26, 2025",
+    description: "A beginner’s guide to why React is so powerful.",
+    src: "/assets/images/blog2.jpg",
+    slug: "why-react-is-awesome",
+    content: Blog2,
+  },
+  {
+    id: 3,
+    title: "Top UI/UX Design Trends 2025",
+    date: "Aug 27, 2025",
+    description: "Learn the latest UI/UX trends to improve your designs.",
+    src: "/assets/images/blog3.jpg",
+    slug: "top-ui-ux-design-trends-2025",
+    content: Blog3,
+  },
+];
