@@ -41,13 +41,13 @@ const App = () => {
       <Header />
       <Routes>
         <Route path='/' element={<HomePage />} />
-        <Route path='/blogs' element={<div style={
-          { paddingTop: '100px' }
-        }  ><Blogs /></div>} />
+        <Route path='/blogs' element={
+          <div style={{ paddingTop: '100px' }}>
+            <Blogs />
+          </div>
+        } />
         <Route path='/blogs/:slug' element={
-          <div
-            style={{ paddingTop: '100px' }}
-          >
+          <div style={{ paddingTop: '100px' }}>
             <BlogDetails />
           </div>
         } />

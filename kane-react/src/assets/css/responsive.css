@@ -528,6 +528,10 @@ Version      : 1.0
     padding-left: 25px;
     padding-right: 25px;
   }
+    .blog-content h1 {
+   font-size: 2rem;
+   font-weight: 600;
+  }
 }
 
 @media only screen and (max-width: 991px) {
