@@ -1,13 +1,63 @@
-import React from 'react'
-import { RiBookReadLine } from '@remixicon/react'
-import Title from '../ui/title'
-
-import ZoomIn from '../animations/zoomIn'
-import { blogsData } from '../../utlits/fackData/blogsData'
-import { Link } from 'react-router-dom'
-
+import React, { useEffect, useState } from "react";
+import axios from 'axios';
+import { RiBookReadLine } from '@remixicon/react';
+import Title from '../ui/title';
+import ZoomIn from '../animations/zoomIn';
+import { Link, useLocation } from 'react-router-dom';
 
 const Blogs = () => {
+    const [posts, setPosts] = useState([]);
+    const [loading, setLoading] = useState(true);
+    const [error, setError] = useState(null);
+    const location = useLocation();
+
+    // Check if we're on the homepage
+    const isHomepage = location.pathname === '/';
+
+    useEffect(() => {
+        const fetchPosts = async () => {
+            try {
+                const response = await axios.get("https://portfolio-cms-sand-eight.vercel.app/api/blog");
+                setPosts(response.data.docs);
+                setError(null);
+            } catch (error) {
+                console.log(error);
+                setError("Failed to load blog posts");
+            } finally {
+                setLoading(false);
+            }
+        };
+        fetchPosts();
+    }, []);
+
+    if (loading) {
+        return (
+            <section id="blog" className="blog-area">
+                <div className="container">
+                    <div className="row">
+                        <div className="col-xl-12 col-lg-12">
+                            <p>...loading</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        );
+    }
+
+    if (error) {
+        return (
+            <section id="blog" className="blog-area">
+                <div className="container">
+                    <div className="row">
+                        <div className="col-xl-12 col-lg-12">
+                            <p>Error: {error}</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        );
+    }
+
     return (
         <section id="blog" className="blog-area">
             <div className="container">
@@ -20,18 +70,69 @@ const Blogs = () => {
                     </div>
                 </div>
                 <div className="row">
-                    {blogsData.map(({ date, descripation, id, src, title, slug }) => <Card key={id} date={date} src={src} descripation={descripation} title={title} id={id} slug={slug} />)}
+                    {posts.length === 0 ? (
+                        <div className="col-12">
+                            <p>No Blogs found</p>
+                        </div>
+                    ) : (
+                        posts.map((post) => (
+                            <Card
+                                key={post.id}
+                                date={new Date(post.createdAt).toLocaleDateString('en-US', {
+                                    year: 'numeric',
+                                    month: 'short',
+                                    day: 'numeric'
+                                })}
+                                src={post.featuredImage?.cloudinary?.secure_url || post.featuredImage?.thumbnailURL || '/default-image.jpg'}
+                                descripation={limitWords(post.description || extractTextFromContent(post.content), 40)}
+                                title={post.title}
+                                id={post.id}
+                                slug={post.slug}
+                            />
+                        ))
+                    )}
                 </div>
-                <div className="blog-btn text-center mt-5 rounded">
-                    <Link className='theme-btn'>View More</Link>
-                </div>
+
+                {/* Conditionally render the "View More" button only on homepage */}
+                {isHomepage && (
+                    <div className="blog-btn text-center mt-5 rounded">
+                        <Link to="/blogs" className='theme-btn'>View More</Link>
+                    </div>
+                )}
             </div>
         </section>
-    )
-}
+    );
+};
 
-export default Blogs
+// Helper function to extract text from Lexical content
+const extractTextFromContent = (content) => {
+    if (!content || !content.root || !content.root.children) return '';
 
+    let text = '';
+    const extractTextFromNode = (node) => {
+        if (node.text) {
+            text += node.text + ' ';
+        }
+        if (node.children) {
+            node.children.forEach(extractTextFromNode);
+        }
+    };
+
+    content.root.children.forEach(extractTextFromNode);
+    return text.trim();
+};
+
+// Helper function to limit text to a specific number of words
+const limitWords = (text, wordLimit) => {
+    if (!text) return '';
+
+    const words = text.trim().split(/\s+/);
+    if (words.length <= wordLimit) {
+        return text;
+    }
+
+    return words.slice(0, wordLimit).join(' ') + '...';
+};
 
 const Card = ({ date, src, title, descripation, id, slug }) => {
     return (
@@ -39,11 +140,13 @@ const Card = ({ date, src, title, descripation, id, slug }) => {
             <ZoomIn id={id}>
                 <div className="blog-item">
                     <div className="image">
-                        <img src={src} alt="Blog" />
+                        <img src={src} alt={title} />
                     </div>
                     <div className="content">
                         <div className="blog-meta mt-15">
-                            <a className="date" href="#"><i className="far fa-calendar-alt"></i>{date}</a>
+                            <a className="date" href="#">
+                                <i className="far fa-calendar-alt"></i>{date}
+                            </a>
                         </div>
                         <h5>
                             <Link to={`/blogs/${slug}`}>{title}</Link>
@@ -57,5 +160,7 @@ const Card = ({ date, src, title, descripation, id, slug }) => {
                 </div>
             </ZoomIn>
         </div>
-    )
-}
+    );
+};
+
+export default Blogs;

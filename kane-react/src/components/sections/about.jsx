@@ -1,6 +1,6 @@
 import React from 'react'
 import { RiArrowRightUpLine, RiDownloadLine, RiFacebookCircleFill, RiTwitterXLine, RiLinkedinFill, RiGithubLine } from '@remixicon/react'
-import profile_img from "../../assets/images/about/profile.jpg"
+import profile_img from "../../assets/images/about/pic.jpeg"
 import SlideUp from '../animations/slideUp'
 const About = () => {
     return (

@@ -1257,6 +1257,8 @@ html {
 
 .about-image-part img {
   border-radius: 10px;
+object-fit: cover;
+height: 500px;
 }
 
 .about-image-part h2 {
